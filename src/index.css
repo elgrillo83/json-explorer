@@ -1,0 +1,26 @@
+.json-renderer {
+  border: 1px solid black;
+  font-family: monospace;
+  padding: 10px;
+}
+
+dd {
+  margin-inline-start: 10px;
+}
+
+dl {
+  align-items: center;
+  display: flex;
+  margin-block-end: 1px;
+  margin-block-start: 1px;
+}
+
+dt {
+  color: blue;
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+  padding-inline-start: 10px;
+}
