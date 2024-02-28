@@ -1,25 +1,12 @@
 import { useMemo, useState } from "react";
 import { extractPropertyFromResponse } from "../helpers";
 
-export default function JsonExplorer() {
+export default function JsonExplorer({ json }: { json: any }) {
   const [property, setProperty] = useState("");
 
-  const EXAMPLE_JSON = {
-    date: "2021-10-27T07:49:14.896Z",
-    hasError: false,
-    fields: [
-      {
-        id: "4c212130",
-        prop: "iban",
-        value: "DE81200505501265402568",
-        hasError: false,
-      },
-    ],
-  };
-
   const value = useMemo(
-    () => extractPropertyFromResponse(property, EXAMPLE_JSON),
-    [property, EXAMPLE_JSON]
+    () => extractPropertyFromResponse(property, json),
+    [property, json]
   );
 
   const renderValue = (value: any) => {
@@ -52,7 +39,7 @@ export default function JsonExplorer() {
 
       <p>{renderValue(value)}</p>
 
-      <pre>{JSON.stringify(EXAMPLE_JSON, null, 2)}</pre>
+      <pre>{JSON.stringify(json, null, 2)}</pre>
     </>
   );
 }
