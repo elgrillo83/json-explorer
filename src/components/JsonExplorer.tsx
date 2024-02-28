@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { extractPropertyFromResponse } from "../helpers";
 
-export default function JsonExplorer({ json }: { json: any }) {
+export default function JsonExplorer({ json }: { json: JSONObject }) {
   const [property, setProperty] = useState("");
 
   const value = useMemo(
@@ -9,7 +9,7 @@ export default function JsonExplorer({ json }: { json: any }) {
     [property, json]
   );
 
-  const renderValue = (value: any) => {
+  const renderValue = (value: JSONValue) => {
     if (Array.isArray(value)) return "(!) Specify index";
 
     const type = typeof value;
