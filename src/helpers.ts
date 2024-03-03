@@ -16,7 +16,15 @@ export function extractPropertyFromResponse(property: string, response: any) {
 function extractArrayIndexFromKey(key: string) {
   const matches = key.match(/^(.+)\[(\d+)\]$/);
 
-  if (!matches) return key;
+  if (!matches) {
+    const matches = key.match(/^\[(\d+)\]$/);
+
+    if (!matches) return key;
+
+    const index = parseInt(matches[1], 10);
+
+    return [index];
+  }
 
   const text = matches[1];
   const index = parseInt(matches[2], 10);
