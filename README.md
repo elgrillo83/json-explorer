@@ -1,30 +1,26 @@
-# React + TypeScript + Vite
+# JSON Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Summary
 
-Currently, two official plugins are available:
+A component to select keys from a JSON object that returns the keyʼs path and value.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Task
 
-## Expanding the ESLint configuration
+Build a React Function Component that takes in JSON data as an argument and satisfies the following acceptance criteria.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Acceptance Criteria
 
-- Configure the top-level `parserOptions` property like this:
+- The JSON data is correctly displayed: indention, (curly) brackets, commas, string values, number values, boolean values, arrays, objects, etc.
+- All keys can be interacted with and are highlighted (e.g. color: blue)
+- When a user clicks on a key, it shows its path and value:
+  - Examples from video:
+    - When a user clicks on `date` it shows `res.date` and `2021-10-27T07:49:14.896Z`
+    - When a user clicks on `hasError` it shows `res.hasError` and `false`
+    - When a user clicks on `prop` in the first object in the `fields` array, it shows `res.fields[0].prop` and `iban`
+- Use Typescript
+- The input field displays the correct value when given a path to the property (as seen in the video)
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Instructions
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Run `npm install`
+- Run `npm run dev`
