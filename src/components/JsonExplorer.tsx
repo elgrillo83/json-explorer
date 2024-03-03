@@ -44,7 +44,7 @@ export default function JsonExplorer({ json }: { json: JSONArrayOrObject }) {
 
       <JsonRenderer json={json} setProperty={setProperty} />
 
-      <pre>{JSON.stringify(json, null, 2)}</pre>
+      {false && <pre>{JSON.stringify(json, null, 2)}</pre>}
     </>
   );
 }
