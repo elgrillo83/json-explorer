@@ -1,4 +1,11 @@
 import React from "react";
+import {
+  JSONArray,
+  JSONArrayOrObject,
+  JSONNode,
+  JSONObject,
+  JSONValue,
+} from "../types";
 
 export default function JsonRenderer({
   json,

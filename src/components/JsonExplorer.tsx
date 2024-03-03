@@ -1,12 +1,13 @@
 import { useMemo, useState } from "react";
-import { extractPropertyFromResponse } from "../helpers";
+import { extractPropertyFromJson } from "../helpers";
+import { JSONArrayOrObject, JSONValue } from "../types";
 import JsonRenderer from "./JsonRenderer";
 
 export default function JsonExplorer({ json }: { json: JSONArrayOrObject }) {
   const [property, setProperty] = useState("");
 
   const value = useMemo(
-    () => extractPropertyFromResponse(property, json),
+    () => extractPropertyFromJson(property, json),
     [property, json]
   );
 

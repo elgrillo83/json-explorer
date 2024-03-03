@@ -1,11 +1,11 @@
-type JSONArray = JSONNode[];
+export type JSONArray = JSONNode[];
 
-type JSONObject = {
+export type JSONObject = {
   [key: string]: JSONNode;
 };
 
-type JSONArrayOrObject = JSONArray | JSONObject;
+export type JSONArrayOrObject = JSONArray | JSONObject;
 
-type JSONNode = JSONValue | JSONObject | JSONArray;
+export type JSONNode = JSONValue | JSONObject | JSONArray;
 
-type JSONValue = boolean | number | string;
+export type JSONValue = boolean | number | string;
