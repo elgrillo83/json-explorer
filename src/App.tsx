@@ -1,18 +1,6 @@
 import "./App.css";
 import JsonExplorer from "./components/JsonExplorer";
-
-const EXAMPLE_JSON = {
-  date: "2021-10-27T07:49:14.896Z",
-  hasError: false,
-  fields: [
-    {
-      id: "4c212130",
-      prop: "iban",
-      value: "DE81200505501265402568",
-      hasError: false,
-    },
-  ],
-};
+import { EXAMPLE_JSON } from "./data";
 
 function App() {
   return <JsonExplorer json={EXAMPLE_JSON} />;
