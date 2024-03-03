@@ -29,16 +29,18 @@ export default function JsonExplorer({ json }: { json: JSONObject }) {
 
   return (
     <>
-      <label htmlFor="property">Property</label>
+      <div className="json-explorer-input">
+        <label htmlFor="property">Property</label>
 
-      <input
-        id="property"
-        onChange={(event) => setProperty(event.target.value)}
-        type="text"
-        value={property}
-      />
+        <input
+          id="property"
+          onChange={(event) => setProperty(event.target.value)}
+          type="text"
+          value={property}
+        />
 
-      <p>{renderValue(value)}</p>
+        <span>{renderValue(value)}</span>
+      </div>
 
       <JsonRenderer json={json} setProperty={setProperty} />
 

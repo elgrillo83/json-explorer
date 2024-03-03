@@ -1,3 +1,9 @@
+.json-explorer-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .json-renderer {
   border: 1px solid black;
   font-family: monospace;
