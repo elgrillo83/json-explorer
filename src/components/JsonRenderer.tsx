@@ -4,7 +4,7 @@ export default function JsonRenderer({
   json,
   setProperty,
 }: {
-  json: JSONObject;
+  json: JSONArrayOrObject;
   setProperty: (property: string) => void;
 }) {
   const handleClick = (key: string) => () => {
