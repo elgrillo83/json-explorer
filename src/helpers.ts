@@ -1,10 +1,10 @@
-export function extractPropertyFromResponse(property: string, response: any) {
+export function extractPropertyFromJson(property: string, json: any) {
   const keys = property
     .split(".")
     .map((key) => extractArrayIndexFromKey(key))
     .flat();
 
-  let result = response;
+  let result = json;
 
   for (const key of keys) {
     result = result?.[key];

@@ -90,7 +90,7 @@ export default function JsonRenderer({
     );
   };
 
-  const renderPrimitive = (value: JSONValue) => {
+  const renderValue = (value: JSONValue) => {
     return typeof json === "string" ? (
       <span>'{value}',</span>
     ) : (
@@ -104,7 +104,7 @@ export default function JsonRenderer({
     } else if (typeof jsonNode === "object") {
       return renderObject(jsonNode, path);
     } else {
-      return renderPrimitive(jsonNode);
+      return renderValue(jsonNode);
     }
   };
 
