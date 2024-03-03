@@ -33,7 +33,7 @@ export default function JsonRenderer({
 
   const renderObject = (object: JSONObject, path: string) => {
     return (
-      <>
+      <ul>
         <li>{`{`}</li>
 
         <li>
@@ -52,7 +52,14 @@ export default function JsonRenderer({
                       </dl>
                     </li>
 
-                    <li>{renderJsonNode(value, generatePath(path, key))}</li>
+                    {value.map((value, index) => (
+                      <li key={index}>
+                        {renderJsonNode(
+                          value,
+                          `${generatePath(path, key)}[${index}]`
+                        )}
+                      </li>
+                    ))}
 
                     <li>],</li>
                   </React.Fragment>
@@ -79,7 +86,7 @@ export default function JsonRenderer({
         </li>
 
         <li>{`},`}</li>
-      </>
+      </ul>
     );
   };
 
@@ -105,9 +112,7 @@ export default function JsonRenderer({
     <>
       <p>Response</p>
 
-      <div className="json-renderer">
-        <ul>{renderJsonNode(json, "")}</ul>
-      </div>
+      <div className="json-renderer">{renderJsonNode(json, "")}</div>
     </>
   );
 }
