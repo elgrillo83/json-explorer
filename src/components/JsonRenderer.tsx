@@ -14,61 +14,73 @@ export default function JsonRenderer({
   const generatePath = (path: string, key: string) =>
     [path, key].filter(Boolean).join(".");
 
-  const renderJson = (json: JSONObject, path: string) => {
-    if (Array.isArray(json)) {
-      return (
-        <ul>
-          {json.map((value, index) => (
-            <li key={index}>{renderJson(value, `${path}[${index}]`)}</li>
-          ))}
-        </ul>
-      );
-    } else if (typeof json === "object") {
-      return (
-        <ul>
-          {Object.entries(json).map(([key, value]) => {
-            if (Array.isArray(value)) {
-              return (
-                <React.Fragment key={key}>
-                  <li>
-                    <dl>
-                      <dt onClick={handleClick(generatePath(path, key))}>
-                        {key}:
-                      </dt>
+  const renderArray = (array: JSONArray, path: string) => {
+    return (
+      <ul>
+        {array.map((value, index) => (
+          <li key={index}>{renderJson(value, `${path}[${index}]`)}</li>
+        ))}
+      </ul>
+    );
+  };
 
-                      <dd>[</dd>
-                    </dl>
-                  </li>
+  const renderObject = (object: JSONObject, path: string) => {
+    return (
+      <ul>
+        {Object.entries(object).map(([key, value]) => {
+          if (Array.isArray(value)) {
+            return (
+              <React.Fragment key={key}>
+                <li>
+                  <dl>
+                    <dt onClick={handleClick(generatePath(path, key))}>
+                      {key}:
+                    </dt>
 
-                  <li>{renderJson(value, generatePath(path, key))}</li>
+                    <dd>[</dd>
+                  </dl>
+                </li>
 
-                  <li>]</li>
-                </React.Fragment>
-              );
-            } else {
-              return (
-                <React.Fragment key={key}>
-                  <li>
-                    <dl>
-                      <dt onClick={handleClick(generatePath(path, key))}>
-                        {key}:
-                      </dt>
+                <li>{renderJson(value, generatePath(path, key))}</li>
 
-                      <dd>{renderJson(value, generatePath(path, key))}</dd>
-                    </dl>
-                  </li>
-                </React.Fragment>
-              );
-            }
-          })}
-        </ul>
-      );
+                <li>]</li>
+              </React.Fragment>
+            );
+          } else {
+            return (
+              <React.Fragment key={key}>
+                <li>
+                  <dl>
+                    <dt onClick={handleClick(generatePath(path, key))}>
+                      {key}:
+                    </dt>
+
+                    <dd>{renderJson(value, generatePath(path, key))}</dd>
+                  </dl>
+                </li>
+              </React.Fragment>
+            );
+          }
+        })}
+      </ul>
+    );
+  };
+
+  const renderPrimitive = (value: JSONValue) => {
+    return typeof json === "string" ? (
+      <span>'{value}'</span>
+    ) : (
+      <span>{value.toString()}</span>
+    );
+  };
+
+  const renderJson = (jsonNode: JSONNode, path: string) => {
+    if (Array.isArray(jsonNode)) {
+      return renderArray(jsonNode, path);
+    } else if (typeof jsonNode === "object") {
+      return renderObject(jsonNode, path);
     } else {
-      return typeof json === "string" ? (
-        <span>'{json}'</span>
-      ) : (
-        <span>{json.toString()}</span>
-      );
+      return renderPrimitive(jsonNode);
     }
   };
 
