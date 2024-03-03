@@ -18,7 +18,7 @@ export default function JsonRenderer({
     return (
       <ul>
         {array.map((value, index) => (
-          <li key={index}>{renderJson(value, `${path}[${index}]`)}</li>
+          <li key={index}>{renderJsonNode(value, `${path}[${index}]`)}</li>
         ))}
       </ul>
     );
@@ -45,7 +45,7 @@ export default function JsonRenderer({
                       </dl>
                     </li>
 
-                    <li>{renderJson(value, generatePath(path, key))}</li>
+                    <li>{renderJsonNode(value, generatePath(path, key))}</li>
 
                     <li>]</li>
                   </React.Fragment>
@@ -59,7 +59,9 @@ export default function JsonRenderer({
                           {key}:
                         </dt>
 
-                        <dd>{renderJson(value, generatePath(path, key))}</dd>
+                        <dd>
+                          {renderJsonNode(value, generatePath(path, key))}
+                        </dd>
                       </dl>
                     </li>
                   </React.Fragment>
@@ -82,7 +84,7 @@ export default function JsonRenderer({
     );
   };
 
-  const renderJson = (jsonNode: JSONNode, path: string) => {
+  const renderJsonNode = (jsonNode: JSONNode, path: string) => {
     if (Array.isArray(jsonNode)) {
       return renderArray(jsonNode, path);
     } else if (typeof jsonNode === "object") {
@@ -97,7 +99,7 @@ export default function JsonRenderer({
       <p>Response</p>
 
       <div className="json-renderer">
-        <ul>{renderJson(json, "")}</ul>
+        <ul>{renderJsonNode(json, "")}</ul>
       </div>
     </>
   );
