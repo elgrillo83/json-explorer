@@ -26,43 +26,51 @@ export default function JsonRenderer({
 
   const renderObject = (object: JSONObject, path: string) => {
     return (
-      <ul>
-        {Object.entries(object).map(([key, value]) => {
-          if (Array.isArray(value)) {
-            return (
-              <React.Fragment key={key}>
-                <li>
-                  <dl>
-                    <dt onClick={handleClick(generatePath(path, key))}>
-                      {key}:
-                    </dt>
+      <>
+        <li>{`{`}</li>
 
-                    <dd>[</dd>
-                  </dl>
-                </li>
+        <li>
+          <ul>
+            {Object.entries(object).map(([key, value]) => {
+              if (Array.isArray(value)) {
+                return (
+                  <React.Fragment key={key}>
+                    <li>
+                      <dl>
+                        <dt onClick={handleClick(generatePath(path, key))}>
+                          {key}:
+                        </dt>
 
-                <li>{renderJson(value, generatePath(path, key))}</li>
+                        <dd>[</dd>
+                      </dl>
+                    </li>
 
-                <li>]</li>
-              </React.Fragment>
-            );
-          } else {
-            return (
-              <React.Fragment key={key}>
-                <li>
-                  <dl>
-                    <dt onClick={handleClick(generatePath(path, key))}>
-                      {key}:
-                    </dt>
+                    <li>{renderJson(value, generatePath(path, key))}</li>
 
-                    <dd>{renderJson(value, generatePath(path, key))}</dd>
-                  </dl>
-                </li>
-              </React.Fragment>
-            );
-          }
-        })}
-      </ul>
+                    <li>]</li>
+                  </React.Fragment>
+                );
+              } else {
+                return (
+                  <React.Fragment key={key}>
+                    <li>
+                      <dl>
+                        <dt onClick={handleClick(generatePath(path, key))}>
+                          {key}:
+                        </dt>
+
+                        <dd>{renderJson(value, generatePath(path, key))}</dd>
+                      </dl>
+                    </li>
+                  </React.Fragment>
+                );
+              }
+            })}
+          </ul>
+        </li>
+
+        <li>{`}`}</li>
+      </>
     );
   };
 
@@ -88,7 +96,9 @@ export default function JsonRenderer({
     <>
       <p>Response</p>
 
-      <div className="json-renderer">{renderJson(json, "")}</div>
+      <div className="json-renderer">
+        <ul>{renderJson(json, "")}</ul>
+      </div>
     </>
   );
 }
