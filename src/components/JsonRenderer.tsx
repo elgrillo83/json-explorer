@@ -47,7 +47,7 @@ export default function JsonRenderer({
 
                     <li>{renderJsonNode(value, generatePath(path, key))}</li>
 
-                    <li>]</li>
+                    <li>],</li>
                   </React.Fragment>
                 );
               } else {
@@ -71,16 +71,16 @@ export default function JsonRenderer({
           </ul>
         </li>
 
-        <li>{`}`}</li>
+        <li>{`},`}</li>
       </>
     );
   };
 
   const renderPrimitive = (value: JSONValue) => {
     return typeof json === "string" ? (
-      <span>'{value}'</span>
+      <span>'{value}',</span>
     ) : (
-      <span>{value.toString()}</span>
+      <span>{value.toString()},</span>
     );
   };
 
